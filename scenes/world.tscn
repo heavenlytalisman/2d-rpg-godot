@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c04akmm1gk2yv"]
+[gd_scene load_steps=9 format=3 uid="uid://c04akmm1gk2yv"]
 
 [ext_resource type="Texture2D" uid="uid://u5k7nwcpxvsq" path="res://assets/tilesets/plains.png" id="1_jimjq"]
 [ext_resource type="Texture2D" uid="uid://p0kkdbqo3y8d" path="res://assets/tilesets/grass.png" id="2_ugrpy"]
 [ext_resource type="Texture2D" uid="uid://dxolpbqd8pnh8" path="res://assets/objects/objects.png" id="3_3vmy0"]
+[ext_resource type="PackedScene" uid="uid://2dw574mbvhe4" path="res://scenes/player.tscn" id="4_y4tnr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_53863"]
 texture = ExtResource("1_jimjq")
@@ -42,29 +43,46 @@ texture = ExtResource("2_ugrpy")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o65is"]
 texture = ExtResource("3_3vmy0")
 0:0/0 = 0
+0:0/0/y_sort_origin = 4
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.3033, 2.38649, -1.59099, 2.74004, -1.41421, 4.86136, 1.59099, 4.77297, 1.76777, 2.74004, 5.39169, 2.56326)
 0:1/0 = 0
+0:1/0/y_sort_origin = 5
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.265165, 0.707107, -6.8059, 0.618718, -8, 2.56326, -6.62913, 5.74524, -2.20971, 6.01041, 3.27037, 6.01041, 6.18718, 5.74524, 6.8059, 1.23744)
 5:0/0 = 0
+5:0/0/y_sort_origin = 4
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.625, 2.25, -6.625, 6, 6.375, 5.75, 6.375, 2.25)
 6:7/size_in_atlas = Vector2i(2, 2)
 6:7/0 = 0
+6:7/0/y_sort_origin = 10
+6:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-14.1421, 2.47487, 12.7279, 2.12132, 13.435, 8.83884, 8.13173, 12.3744, -0.707108, 13.0815, -9.19239, 12.3744, -13.7886, 9.19239)
 8:6/size_in_atlas = Vector2i(2, 3)
 8:6/0 = 0
+8:6/0/y_sort_origin = 17
+8:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.3033, 16.617, -4.77297, 19.799, 0.530331, 21.39, 5.48008, 19.9758, 5.12652, 16.7938)
 10:7/size_in_atlas = Vector2i(2, 2)
 10:7/0 = 0
+10:7/0/y_sort_origin = 4
+10:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-10.6066, 4.77297, -5.83363, 8.83883, 9.01561, 8.92722, 10.9602, 2.65165, 8.75045, -1.94454, 5.56847, -0.441941, -3.97748, 0.176777, -9.01561, -3.53553, -11.4021, -1.94454)
 0:5/size_in_atlas = Vector2i(3, 4)
 0:5/0 = 0
+0:5/0/y_sort_origin = 20
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11.1369, 21.9203, -11.1369, 15.2028, -9.72272, 13.0815, -3.88909, 13.0815, 6.71752, 12.7279, 10.9602, 18.3848, 11.4905, 21.0364, 9.8995, 25.2791, 5.3033, 25.4558, 1.41422, 24.3952, -1.59099, 25.8094, -5.3033, 26.163, -7.42462, 22.981)
 11:2/size_in_atlas = Vector2i(1, 2)
 11:2/0 = 0
 10:0/size_in_atlas = Vector2i(2, 1)
 10:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_knn87"]
+physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_53863")
 sources/1 = SubResource("TileSetAtlasSource_aptrg")
 sources/2 = SubResource("TileSetAtlasSource_o65is")
 
 [node name="world" type="Node2D"]
+y_sort_enabled = true
 
 [node name="TileMap" type="TileMap" parent="."]
+y_sort_enabled = true
 tile_set = SubResource("TileSet_knn87")
 format = 2
 layer_0/name = "ground"
@@ -72,4 +90,7 @@ layer_0/tile_data = PackedInt32Array(0, 196608, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4,
 layer_1/name = "cliffs"
 layer_1/tile_data = PackedInt32Array(30, 131072, 5, 29, 131072, 5, 28, 131072, 5, 27, 131072, 5, 26, 131072, 5, 25, 131072, 5, 24, 131072, 5, 23, 65536, 5, 65559, 65536, 6, 65560, 327680, 4, 65561, 131072, 5, 131097, 131072, 6, 131098, 131072, 6, 131099, 131072, 6, 65564, 262144, 4, 131100, 196608, 6, 131096, 65536, 6, 65562, 131072, 5, 65563, 131072, 5, 65565, 131072, 6, 65566, 131072, 6)
 layer_2/name = "ysort"
+layer_2/y_sort_enabled = true
 layer_2/tile_data = PackedInt32Array(65538, 655362, 7, 393225, 655362, 7, 196622, 655362, 7, 131077, 2, 5, 196619, 2, 5, 262164, 2, 5, 65553, 2, 5, 655361, 2, 5, 786437, 2, 5, 786435, 655362, 7, 851977, 655362, 7, 851982, 655362, 7, 327708, 655362, 7, 851993, 655362, 7, 917516, 2, 5, 786449, 2, 5, 851990, 2, 5, 786460, 2, 5, 26, 655362, 7, 131080, 524290, 6, 65556, 524290, 6, 131094, 524290, 6, 65565, 524290, 6, 131097, 524290, 6, 917506, 393218, 7, 983056, 393218, 7, 13, 393218, 7, 6, 2, 1, 917511, 2, 1, 196636, 2, 1, 917523, 2, 1, 458760, 2, 0, 458761, 327682, 0, 786442, 327682, 0, 393243, 327682, 0, 196635, 327682, 0, 28, 2, 0)
+
+[node name="player" parent="." instance=ExtResource("4_y4tnr")]
