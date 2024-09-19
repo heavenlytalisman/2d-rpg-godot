@@ -1,6 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://dtqdgrijk66sd"]
+[gd_scene load_steps=22 format=3 uid="uid://dtqdgrijk66sd"]
 
-[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_ddbot"]
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_ddbot"]
 [ext_resource type="Texture2D" uid="uid://b4bbeadgmkyi1" path="res://assets/characters/slime.png" id="1_u7g2m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_carpp"]
@@ -132,6 +132,8 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ey6mw"]
 radius = 48.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_lt0mb"]
+
 [node name="enemy" type="CharacterBody2D"]
 position = Vector2(-24, 0)
 script = ExtResource("1_ddbot")
@@ -158,5 +160,17 @@ collision_mask = 2
 position = Vector2(0, -9)
 shape = SubResource("CircleShape2D_ey6mw")
 
+[node name="enemy_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hitbox"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_lt0mb")
+
+[node name="take_damage_cooldown" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="body_entered" from="detection_area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="." method="_on_detection_area_body_exited"]
+[connection signal="body_entered" from="enemy_hitbox" to="." method="_on_enemy_hitbox_body_entered"]
+[connection signal="body_exited" from="enemy_hitbox" to="." method="_on_enemy_hitbox_body_exited"]
+[connection signal="timeout" from="take_damage_cooldown" to="." method="_on_take_damage_cooldown_timeout"]
